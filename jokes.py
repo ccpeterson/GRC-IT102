@@ -5,8 +5,8 @@
 
 # Here come the jokes
 print("I'm jokebot, please type your name and press enter.")
-input() 
-print("Cool, don't care. Ready for some jokes? (press enter to continue)")
+name = input() 
+print("Cool, don't care "+name+". Ready for some jokes? (press enter to continue)")
 input() 
 print("Did you say yes or no? Say it out loud please. (press enter to continue)")
 input() 
