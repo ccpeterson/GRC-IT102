@@ -7,8 +7,9 @@
 import random
 
 #Ask their name
-realName=input("What's your full name?")
-print(realName,"please press enter to begin the super-complicated supercomputer process to calculate your pirate name")
+firstName=input("What's your first name?")
+lastName=input("What's your last name?")
+print(firstName,"please press enter to begin the super-complicated supercomputer process to calculate your pirate name")
 input()
 input("Beep boop beep. Calculations complete. Press enter to continue.")
 
@@ -17,5 +18,5 @@ pirateFirst=["Captain","Stinky-Boot","Peg-Leg","Pludering","Skipper","Stubby","P
 pirateLast=["Tooth","Jack","McGee","Sparrow","McPirateFace"]
 pirateFull=random.choice(pirateFirst)+" "+random.choice(pirateLast)
 
-print(realName,"your pirate name is",pirateFull)
+print(firstName,lastName,"your pirate name is",pirateFull)
 input("Press enter to quit.")
