@@ -1,5 +1,5 @@
 # input.py
-# This program gives you a random name
+# This program gives you a random pirate name
 # Clinton Peterson
 # 06 Apr 2017
 
