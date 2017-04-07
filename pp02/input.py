@@ -11,7 +11,10 @@ state = input("Please input your state's two letter abbriviation:  ")
 zip = input("Please input your ZIP code:  ")
 
 input("Thanks, press enter to see what a letter addressed to you would look like")
-
+print()
 print(firstName, lastName)
 print(streetAddress)
 print(city, state, zip)
+print()
+input("Press enter to quit")
+
