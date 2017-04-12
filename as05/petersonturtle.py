@@ -18,7 +18,8 @@ pete.fillcolor("green")
 pete.pencolor("black")
 pete.speed(1000)
 
-
+#loop 60 times
+#this number and the turn at the end need to have a product of 360 to make a full circle
 for i in range(60):
 #make  a crazy line out from center
     pete.forward(100)
@@ -34,11 +35,14 @@ for i in range(60):
 #turn 6 degrees do we can loop again
     pete.right(6)
 
+#pander for votes    
 pete.penup()
 pete.setposition(-200, 200)
-pete.write("VOTE PETERSON", align="left", font=("Arial", 24, "normal"))
+pete.fillcolor("red")
+pete.pencolor("blue")
+pete.write("VOTE PETERSON!!!", align="left", font=("Arial", 24, "normal"))
 
-# Where is Alex?
+# Where is Pete?
 print(pete.xcor())
 print(pete.ycor())
 print(pete.heading())
