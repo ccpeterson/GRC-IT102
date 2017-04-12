@@ -12,7 +12,7 @@ possible = ("It is certain", "It is decidedly so", "Without a doubt", "Yes defin
 
 #extra points with a loop!
 playAgain = "yes"
-while playagain == "yes":
+while playAgain == "yes":
 #Asking the question
 	question = input ("Please ask a yes or no question")
 #this is where I get extra extra points	
@@ -37,7 +37,7 @@ while playagain == "yes":
 	print("")
 #asking if they want to continue
 	print("Do you want to consult the 8 ball again? (yes or no)")
-	playagain = input()
+	playAgain = input()
 
 print("ok, bye")	
 input()
