@@ -5,8 +5,7 @@ totalCountB = 0
 
 
 print("Generating 3 random integers from 1 to 1000000 and sorting them.")
-print("Every compare and every swap count as a move")
-print()
+print("Every compare and every swap count as a move\n")
 print("First let's try the method described in the assignment")
 
 for i in range(1000):
