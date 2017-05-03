@@ -14,7 +14,7 @@ print("Every compare and every swap count as a move\n")
 
 print("First let's try the method described in the assignment")
 
-for i in range(100000):
+for i in range(1000):
     xA=random.randint(1,1000000)
     xB=random.randint(1,1000000)
     xC=random.randint(1,1000000)
@@ -43,7 +43,7 @@ for i in range(100000):
 print("The average number of moves after",(i+1),"iterations is,",totalCountA/(i+1),"\n")
 print("Now let's try my method.")
 
-for j in range(100000):
+for j in range(1000):
     xD=random.randint(1,1000000)
     xE=random.randint(1,1000000)
     xF=random.randint(1,1000000)
@@ -76,32 +76,4 @@ if (totalCountB/(j+1)) < (totalCountA/(j+1)):
     print("\nMy alogrithm WINS!!")
 else:
     print("\nDoesn't matter what is here because I already know my way wins")
-
-for k in range(100000):
-    xG=random.randint(1,1000000)
-    xH=random.randint(1,1000000)
-    xI=random.randint(1,1000000)
-    counter = 0
-
-    if xH > xI:
-        xH, xI = xI, xH
-        counter = counter + 2
-    else:
-        counter = counter +1
-		
-    if xG > xH:
-        xG, xH = xH, xG
-        counter = counter + 2
-    else:
-        counter = counter + 1
-
-    if xG > xI:
-        xG, xI = xI, xG
-        counter = counter + 2
-    else:
-        counter = counter + 1
-         
-    totalCountC = totalCountC + counter
-        
-print("The average number of moves on the experiment, after",(k+1),"iterations is,",totalCountC/(k+1))
 
