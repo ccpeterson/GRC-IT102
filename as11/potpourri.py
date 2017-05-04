@@ -26,6 +26,14 @@ def drawCircle(xLoc, yLoc, fillColor):
     pete.circle(100)
     pete.end_fill()
 
+# Creating the function for prog 5
+def stringReverse(string):
+    reverse=""
+    l = len(string)
+    for i in range(l):
+        reverse += string[l-1-i]
+    return reverse
+
 # letting the user run programs multiple times or quit
     
 playAgain = "yes"
@@ -139,6 +147,8 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
         xLoc = -400
         yLoc = 400
 
+        print("Drawing not one, but TWO series of 100 px circles of random color diagonally across a 1000 pixel square window")
+        
         for i in range(19):
             random_color = pick_color()
             drawCircle(xLoc,yLoc,random_color)
@@ -155,9 +165,16 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
             yLoc = yLoc + 50
 # program 4            
     elif progChoice == 4:
-        print("Do some stuff 4")
+        x = 5
+        for j in range(5):
+            for i in range (x,0,-1):
+                print(i," ",end="")
+            print("")
+            x = x-1
     elif progChoice == 5:
-        print("Do some stuff 5")
+        userInput = input("Enter text and I'll reverse it: ")
+
+        print (stringReverse(userInput))
     else:
         print("This should never happen")
 
@@ -168,6 +185,3 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
 
 print("Thanks for checking it out!")	
 input("Press enter to quit.")
-
-
-
