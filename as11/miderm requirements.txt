@@ -1,0 +1,33 @@
+Program 01:  Input and Decisioning Making
+
+Write a program to print an encouraging statement based on the day of the week the user inputs.
+
+ 
+
+Program 02:  Functions
+
+Write and demonstrate a function areaCalcRect(length, width) that calculates the area of a rectangle.
+
+ 
+
+Program 03:  Loops,  Turtle Graphics, and Random
+
+Write a program that draws a series of 100 px circles of random color diagonally across of 1000 pixel square window.
+
+ 
+
+Program 04:  Nested Loops
+
+Print the following output to the screen using nested loops.
+
+5 4 3 2 1 
+4 3 2 1
+3 2 1 
+2 1 
+1
+
+ 
+
+Program 05:  Strings and Functions
+
+Write your own function stringReverse(string)  to reverse the order of a string and return it to the user.   You may not use any python defined string methods except for len(). 

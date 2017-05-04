@@ -3,13 +3,31 @@
 # Clinton Peterson
 # 02 May 2017
 
-#importing random
+#importing stuff i need
 import random
+import turtle
 
+# Creating the function for prog 2
 def areaCalcRect(length,width):
     areaRect = length * width
     return areaRect
 
+# Creating a random color function for prog 3	
+def pick_color():
+    colors = ["blue","black","brown","red","yellow","green","orange","beige","turquoise","pink"]
+    random.shuffle(colors)
+    return colors[0]
+
+# Creating a circle funtion for prog 3.
+def drawCircle(xLoc, yLoc, fillColor):
+    pete.setposition(xLoc, yLoc)
+    pete.fillcolor(fillColor)
+    pete.begin_fill()
+    pete.circle(100)
+    pete.end_fill()
+
+# letting the user run programs multiple times or quit
+    
 playAgain = "yes"
 while playAgain.lower() == "yes" or playAgain.lower() == "y":
 
@@ -21,6 +39,9 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
     print("Program 04: Nested Loops")    
     print("Program 05: Strings and Functions")
     print("----------")
+    
+# asking for and validating the menu input
+
     while True:
         progChoice = input("Which program would you like?")
         
@@ -30,12 +51,109 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
         else:
             print("Please enter the number of the program you would like to run and press enter.")
 
+# program 1
     if progChoice == 1:
-        print("Do some stuff 1")
+        while True:
+            dayOfWeek = input ("What day is is today?")
+
+            if dayOfWeek.lower() == "monday" or dayOfWeek.lower() == "mon" or dayOfWeek.lower() == "m":
+                print ("Monday's words of encouragement:")
+                print ("Go as far as you can see; when you get there, you'll be able to see further.")
+                break
+            elif dayOfWeek.lower() == "tuesday" or dayOfWeek.lower() == "tues" or dayOfWeek.lower() == "t":
+                print ("Tuesday's words of encouragement:")
+                print ("You get to decide where your time goes. You can either spend it moving forward,")
+                print ("or you can spend it putting out fires. You decide. And if you don't decide,")
+                print ("others will decide for you.")
+                print ("-Tony Morgan")
+                break
+            elif dayOfWeek.lower() == "wednesday" or dayOfWeek.lower() == "wed" or dayOfWeek.lower() == "w":
+                print ("Wednesday's words of encouragement:")
+                print ("Believe you can and you're halfway there.")
+                print ("-Theodore Roosevelt")
+                break
+            elif dayOfWeek.lower() == "thursday" or dayOfWeek.lower() == "thur" or dayOfWeek.lower() == "th":
+                print ("Thursday's words of encouragement:")
+                print ("Success is the sum of small efforts repeated day in and day out")
+                print ("-Robert Collier")
+                break
+            elif dayOfWeek.lower() == "friday" or dayOfWeek.lower() == "fri" or dayOfWeek.lower() == "f":
+                print ("Friday's words of encouragement:")
+                print ("Failure is the condiment that gives success its flavor")
+                print ("-Truman Capote")
+                break
+            elif dayOfWeek.lower() == "saturday" or dayOfWeek.lower() == "sat":
+                print ("Saturday's words of encouragement:")
+                print ("People rarel succeed unless they have fun in what they are doing")
+                print ("-Dale Carnegie")
+                break
+            elif dayOfWeek.lower() == "sunday" or dayOfWeek.lower() == "sun":
+                print ("Sunday's words of encouragement:")
+                print ("Fall 7 times, stand up 8")
+                print ("-Japanese Proverb")
+                break
+            else:
+                print ("Sorry, I didn't understand you.")
+
+# program 2                
     elif progChoice == 2:
-        print("Do some stuff 2")
+        print ("I will help you perform the incredibly difficult task of finding the area of a rectangle")
+        userUnit = input("What is the unit you will be giving me the rectangles dimensions in?")
+
+        userLength = 0
+        while True:
+          try:
+             userLength = float(input("What is the length of the rectangle?"))       
+          except ValueError:
+             print("Numbers only please.")
+             continue
+          else:
+             break
+        userWidth = 0
+        while True:
+          try:
+             userWidth = float(input("What is the width of the rectangle?"))       
+          except ValueError:
+             print("Numbers only please.")
+             continue
+          else:
+             break
+
+        userArea = areaCalcRect(userLength,userWidth)
+        print ("The area of your rectangle is",userArea,userUnit,"squared.")
+
+# program 3        
     elif progChoice == 3:
-        print("Do some stuff 3")
+
+        win = turtle.Screen()
+        win.setup(1000, 1000)
+        win.title("Circles!")
+        win.bgcolor("white")
+        pete = turtle.Turtle()
+        pete.fillcolor("green")
+        pete.pencolor("black")
+        pete.speed(100)
+        pete.penup()
+        pete.hideturtle()        
+        
+        xLoc = -400
+        yLoc = 400
+
+        for i in range(19):
+            random_color = pick_color()
+            drawCircle(xLoc,yLoc,random_color)
+            xLoc = xLoc + 50
+            yLoc = yLoc -50
+
+        xLoc = -400
+        yLoc = -400
+
+        for i in range(19):
+            random_color = pick_color()
+            drawCircle(xLoc,yLoc,random_color)
+            xLoc = xLoc + 50
+            yLoc = yLoc + 50
+            
     elif progChoice == 4:
         print("Do some stuff 4")
     elif progChoice == 5:
