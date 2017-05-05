@@ -29,9 +29,9 @@ def drawCircle(xLoc, yLoc, fillColor):
 # Creating the function for prog 5
 def stringReverse(string):
     reverse=""
-    l = len(string)
-    for i in range(l):
-        reverse += string[l-1-i]
+    z = len(string)
+    for i in range(z):
+        reverse += string[z-1-i]
     return reverse
 
 # letting the user run programs multiple times or quit
@@ -41,11 +41,12 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
 
     print("Welcome to Clinton's midterm, please pick a program from the menu")
     print("----------")
-    print("Program 01: Input and Decisioning Making") 
-    print("Program 02: Functions")
-    print("Program 03: Loops, Turtle Graphics, and Random")
-    print("Program 04: Nested Loops")    
-    print("Program 05: Strings and Functions")
+    print("1 - Program 01: Input and Decisioning Making") 
+    print("2 - Program 02: Functions")
+    print("3 - Program 03: Loops, Turtle Graphics, and Random")
+    print("4 - Program 04: Nested Loops")    
+    print("5 - Program 05: Strings and Functions")
+    print("6 - Exit")
     print("----------")
     
 # asking for and validating the menu input
@@ -53,11 +54,11 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
     while True:
         progChoice = input("Which program would you like?")
         
-        if progChoice == "1" or progChoice == "2" or progChoice == "3" or progChoice == "4" or progChoice == "5":
+        if progChoice == "1" or progChoice == "2" or progChoice == "3" or progChoice == "4" or progChoice == "5" or progChoice == "6":
             progChoice = int(progChoice)
             break
         else:
-            print("Please enter the number of the program you would like to run and press enter.")
+            print("Please enter the number of the selection you would like to run and press enter.")
 
 # program 1
     if progChoice == 1:
@@ -171,17 +172,26 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
                 print(i," ",end="")
             print("")
             x = x-1
+# program 5 
     elif progChoice == 5:
         userInput = input("Enter text and I'll reverse it: ")
 
         print (stringReverse(userInput))
+# exit
+    elif progChoice == 6:
+        break
     else:
         print("This should never happen")
 
 
 
-    print("Want to try another program?")
-    playAgain = input()
+    while True:
+        print("Want to try another program?")
+        playAgain = input()
+        if playAgain.lower() == "y" or playAgain.lower() == "yes" or playAgain.lower() == "n" or playAgain.lower() == "no":
+            break
+        else:
+            print("Please type Y or N")
 
 print("Thanks for checking it out!")	
 input("Press enter to quit.")
