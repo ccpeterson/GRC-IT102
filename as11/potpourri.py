@@ -171,6 +171,7 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
             
 # Program 4            
     elif progChoice == 4:
+        print("Printing a thing using nested loops\n")
         x = 5
         for j in range(5):
             for i in range (x,0,-1):
