@@ -1,9 +1,9 @@
-# potpourri.py.py
-# Midterm Stuff
+# potpourri.py
+# AS11
 # Clinton Peterson
 # 02 May 2017
 
-#importing stuff i need
+# Stuff I need
 import random
 import turtle
 
@@ -18,7 +18,7 @@ def pick_color():
     random.shuffle(colors)
     return colors[0]
 
-# Creating a circle funtion for prog 3.
+# Creating a turtle circle funtion for prog 3.
 def drawCircle(xLoc, yLoc, fillColor):
     pete.setposition(xLoc, yLoc)
     pete.fillcolor(fillColor)
@@ -28,17 +28,18 @@ def drawCircle(xLoc, yLoc, fillColor):
 
 # Creating the function for prog 5
 def stringReverse(string):
+    # An empty string to add characters to from the original
     reverse=""
     z = len(string)
-    for i in range(z):
+    for i in range(z): 
         reverse += string[z-1-i]
     return reverse
 
-# letting the user run programs multiple times or quit
-    
+# Letting the user run programs multiple times or quit
 playAgain = "yes"
 while playAgain.lower() == "yes" or playAgain.lower() == "y":
 
+    # Main menu
     print("Welcome to Clinton's midterm, please pick a program from the menu")
     print("----------")
     print("1 - Program 01: Input and Decisioning Making") 
@@ -49,7 +50,7 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
     print("6 - Exit")
     print("----------")
     
-# asking for and validating the menu input
+    # Asking for and validating the menu input
 
     while True:
         progChoice = input("Which program would you like?")
@@ -60,7 +61,7 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
         else:
             print("Please enter the number of the selection you would like to run and press enter.")
 
-# program 1
+# Program 1
     if progChoice == 1:
         while True:
             dayOfWeek = input ("What day is is today?")
@@ -104,11 +105,12 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
             else:
                 print ("Sorry, I didn't understand you.")
 
-# program 2                
+# Program 2                
     elif progChoice == 2:
         print ("I will help you perform the incredibly difficult task of finding the area of a rectangle")
         userUnit = input("What is the unit you will be giving me the rectangles dimensions in?")
 
+        # I researched the best way to validate the input, found the While/Try/Except
         userLength = 0
         while True:
           try:
@@ -131,7 +133,7 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
         userArea = areaCalcRect(userLength,userWidth)
         print ("The area of your rectangle is",userArea,userUnit,"squared.")
 
-# program 3        
+# Program 3        
     elif progChoice == 3:
 
         win = turtle.Screen()
@@ -144,7 +146,8 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
         pete.speed(100)
         pete.penup()
         pete.hideturtle()        
-        
+
+        #Starting in the top left for the first line
         xLoc = -400
         yLoc = 400
 
@@ -156,6 +159,7 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
             xLoc = xLoc + 50
             yLoc = yLoc -50
 
+        #Bottom left for the second line
         xLoc = -400
         yLoc = -400
 
@@ -164,7 +168,8 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
             drawCircle(xLoc,yLoc,random_color)
             xLoc = xLoc + 50
             yLoc = yLoc + 50
-# program 4            
+            
+# Program 4            
     elif progChoice == 4:
         x = 5
         for j in range(5):
@@ -172,19 +177,20 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
                 print(i," ",end="")
             print("")
             x = x-1
-# program 5 
+
+# Program 5 
     elif progChoice == 5:
         userInput = input("Enter text and I'll reverse it: ")
-
         print (stringReverse(userInput))
-# exit
+
+# Exit
     elif progChoice == 6:
         break
     else:
         print("This should never happen")
 
 
-
+# This happens after a program runs (or when they exit)
     while True:
         print("Want to try another program?")
         playAgain = input()
@@ -193,5 +199,6 @@ while playAgain.lower() == "yes" or playAgain.lower() == "y":
         else:
             print("Please type Y or N")
 
+# Goodbye message
 print("Thanks for checking it out!")	
 input("Press enter to quit.")
