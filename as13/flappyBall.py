@@ -12,7 +12,7 @@ UPDATE_RATE = 60 #frames per second
 BALL_RAD = 30 #ball Size in Pixels
 MOVEX = 2 #pipe's moving left speed
 MOVEY = 2 #falling speed
-PIPE_LENGTH = 30\0 #in pixels, from floor and ceiling
+PIPE_LENGTH = 300 #in pixels, from floor and ceiling
 PIPE_WIDTH = 50 #in pixels
 
 
