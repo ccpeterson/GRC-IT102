@@ -20,19 +20,18 @@ PIPE_WIDTH = 50
 win = GraphWin("GraphicsWindow", WIN_WIDTH, WIN_HEIGHT, autoflush=False)
 win.setBackground("grey")
 
-#Setup up the ball
+#Setup up the ball and pipes
 ball01 = Circle(Point(100 ,WIN_HEIGHT/2), BALL_RAD)
 ball01.setFill("blue")
 ball01.setOutline("black")
 ball01.setWidth(5)
 ball01.draw(win)
 
-tRect01 = Rectangle(Point(WIN_WIDTH-PIPE_WIDTH,0), Point(WIN_WIDTH,PIPE_LENGTH))
+tRect01 = Rectangle(Point(WIN_WIDTH-PIPE_WIDTH,0), Point(WIN_WIDTH,PIPE_LENGTH))
 tRect01.setFill("blue")
 tRect01.setOutline("black")
 tRect01.draw(win)
-
-bRect01 = Rectangle(Point(WIN_WIDTH-PIPE_WIDTH,WIN_HEIGHT), Point(WIN_WIDTH,WIN_HEIGHT-PIPE_LENGTH))
+bRect01 = Rectangle(Point(WIN_WIDTH-PIPE_WIDTH,WIN_HEIGHT), Point(WIN_WIDTH,WIN_HEIGHT-PIPE_LENGTH))
 bRect01.setFill("blue")
 bRect01.setOutline("black")
 bRect01.draw(win)
