@@ -41,7 +41,12 @@ def makePipes(lvl):
     bottomPipeList[lvl].setOutline("black")
     bottomPipeList[lvl].draw(win)
 
-message = Text(Point(500,100), "Hello!")
+message1 = Text(Point(600,100), "-Spacebar to flap-")
+message1.draw(win)
+message1 = Text(Point(600,150), "-q to quit-")
+message1.draw(win)
+message1 = Text(Point(600,200), "-Pipes passed: X-")
+message1.draw(win)
 
 #setting variable to be changed when you lose or win a level
 gameOver = 0
@@ -65,6 +70,9 @@ while True:
         #For every space bar it flaps up 20 times what it falls each frame
         if key == "space":
             ball01.move(0, -20 * MOVEY)
+        #quiting
+        if key =="q":
+            gameOver =1
         #If the ball hits the top bottom, gameover
         if ball01.getCenter().getY() + BALL_RAD >= WIN_HEIGHT or ball01.getCenter().getY() - BALL_RAD <= 0 :
             gameOver = 1
