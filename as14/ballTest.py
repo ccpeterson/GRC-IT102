@@ -18,16 +18,9 @@ yDirList=[]
 
 
 for i in range(NUM_BALLS):
-    while True:
-        xPosInit = random.randint(BALL_SIZE, WIN_WIDTH - BALL_SIZE)
-        yPosInit = random.randint(BALL_SIZE, WIN_WIDTH - BALL_SIZE)
-        for j in range (0,i-1):
-            if abs(ballList[j].getCenter().getX() - xPosInit) < 2 * BALL_SIZE and abs(ballList[j].getCenter().getY() - yPosInit) < 2*BALL_SIZE:
-                break
-            
-
-
-    
+    xPosInit = random.randint(BALL_SIZE, WIN_WIDTH - BALL_SIZE)
+    yPosInit = random.randint(BALL_SIZE, WIN_WIDTH - BALL_SIZE)
+       
     ballList.append(Circle(Point(xPosInit,yPosInit), BALL_SIZE))
     ballList[i].setFill("#%06x" % random.randint(0, 0xFFFFFF))
     ballList[i].setWidth(BALL_OUTLINE)
