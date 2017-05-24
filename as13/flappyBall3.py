@@ -1,3 +1,7 @@
+# flappyBall.py
+# Clinton Peterson
+# 23 May 2017
+
 from graphics import *
 import random
 
@@ -20,6 +24,7 @@ ball01.setOutline("black")
 ball01.setWidth(5)
 ball01.draw(win)
 
+#had to make a function to reset the ball
 def ballReset():
     global ball01
     ball01.undraw()
@@ -43,8 +48,11 @@ def makePipes(lvl):
     bottomPipeList[lvl].setOutline("black")
     bottomPipeList[lvl].draw(win)
 
+#wall is a counter that goes up for every wall created, regardless of multiple games
 wall=0
+#level is how many pipes passed each round played
 level = 0
+#draws the words on the screen
 message1 = Text(Point(WIN_WIDTH//2,100), "-Spacebar to flap-")
 message1.draw(win)
 message2 = Text(Point(WIN_WIDTH//2,150), "-q to quit-")
@@ -54,11 +62,13 @@ message3.draw(win)
 message4 = Text(Point(WIN_WIDTH//2,240), level)
 message4.draw(win)
 
-
+#starting a loop so the game can be played multiple times
 playAgain = 1
 while playAgain == 1:
+    #resetting the level and game over counter
     gameOver = 0
     level = 0
+    #redrawing the display for the curent level
     message4.setText(level)
     while True:
         if gameOver == 1:
@@ -66,9 +76,11 @@ while playAgain == 1:
             bottomPipeList[level].undraw()
             ball01.setFill("red")
             break 
+        #draw a pipe
         makePipes(wall)
-        
+        #set a variable to keep track of the pipes leading edge
         xPipe = WIN_WIDTH - PIPE_WIDTH
+        #winner variable resets every pipe
         winner = 0
         while True:    
             key = win.checkKey()        
