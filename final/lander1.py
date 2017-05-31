@@ -20,7 +20,10 @@ win.setBackground("white")
 lander01 = Circle(Point(WIN_WIDTH/2 ,WIN_HEIGHT/2), LANDER_SIZE)
 lander01.setFill("black")
 lander01.setOutline("blue")
-lander01.draw(win)
+#lander01.draw(win)
+
+lander02 = Image(Point(WIN_WIDTH/2 ,WIN_HEIGHT/2), "lander.gif")
+lander02.draw(win)
 
 fallingSpeed = 1
 lateralSpeed = 0
@@ -40,16 +43,18 @@ for i in range(WIN_WIDTH//100):
     
     groundList.append(Line(Point(i*100,WIN_HEIGHT-100), Point(i*100+100,WIN_HEIGHT-100)))
     groundList[i].setOutline("#%06x" % random.randint(0, 0xFFFFFF))
-    groundList[i].setFill("#%06x" % random.randint(0, 0xFFFFFF))
+    groundList[i].setFill("#%06x" % random.randint(0, 0xFFFFFF))
+
     groundList[i].setWidth(10)
-    groundList[i].draw(win)
+    groundList[i].draw(win)
+
 while True:    
     verticalDisplay =  str(round(10*fallingSpeed,2))
     message1.setText(verticalDisplay)
     message2.setText(lateralSpeed)
     message3.setText(fuel)
-    if lander01.getCenter().getY() + LANDER_SIZE >= WIN_HEIGHT or lander01.getCenter().getY() - LANDER_SIZE <= 0 :
-        break
+    #if lander01.getCenter().getY() + LANDER_SIZE >= WIN_HEIGHT or lander01.getCenter().getY() - LANDER_SIZE <= 0 :
+        #break
     key = win.checkKey()        
     if key == "space" and fuel != 0:
         fallingSpeed = fallingSpeed - THRUST
@@ -61,5 +66,6 @@ while True:
         lateralSpeed = lateralSpeed + THRUST
         fuel -= 1
     fallingSpeed = fallingSpeed + GRAVITY
-    lander01.move(lateralSpeed, fallingSpeed)        
+    #lander01.move(lateralSpeed, fallingSpeed)        
+    lander02.move(lateralSpeed, fallingSpeed) 
     update(UPDATE_RATE)
