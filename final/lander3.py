@@ -13,9 +13,14 @@ GRAVITY = 0.01
 THRUST = 1
 STARTING_FUEL = 50 
 
+def landerReset():
+    global lander01
+    lander01.undraw()
+    lander01 = Image(Point(WIN_WIDTH/2 ,WIN_HEIGHT/2), "lander.gif")
+    lander01.draw(win)
+
 win = GraphWin("Lander", WIN_WIDTH, WIN_HEIGHT, autoflush=False)
 win.setBackground("white")
-
 
 instructions1 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2-100), "Welcome to Lander. Your mission is to land on the color indicated in the top right corner.")
 instructions1.draw(win)
@@ -31,31 +36,13 @@ while True:
             instructions3.undraw()
             break
 
-
-
-
-
-
-
-
-
-
-
 lander01 = Image(Point(WIN_WIDTH/2 ,WIN_HEIGHT/2), "lander.gif")
 lander01.draw(win)
-
-def landerReset():
-    global lander01
-    lander01.undraw()
-    lander01 = Image(Point(WIN_WIDTH/2 ,WIN_HEIGHT/2), "lander.gif")
-    lander01.draw(win)
-
 fuel = STARTING_FUEL
 #Initial rate of decent
 fallingSpeed = 0
 #Initial rate of lateral movement
 lateralSpeed = 0
-
 verticalDisplay =  str(round(10*fallingSpeed,2))
 
 message1 = Text(Point(50,100), verticalDisplay)
@@ -76,11 +63,8 @@ while playAgain == 1:
     fuel = STARTING_FUEL
     winner = 0
     loser = 0
-    #Initial rate of decent
     fallingSpeed = 0
-    #Initial rate of lateral movement
     lateralSpeed = 0
-
     
     landingPadList = []
     randomPad = random.randint(0, (WIN_WIDTH//PAD_WIDTH))
@@ -95,12 +79,8 @@ while playAgain == 1:
             targetColor = randomColor
 
     target01 = Rectangle(Point((WIN_WIDTH - 100),0), Point(WIN_WIDTH,100))
-    target01.setFill(targetColor)
+    target01.setFill(targetColor)
     target01.draw(win)
-
-
-
-
 
     while True:    
         verticalDisplay =  str(round(10*fallingSpeed,2))
@@ -111,10 +91,10 @@ while playAgain == 1:
         bottomEdge = lander01.getAnchor().getY() + lander01.getHeight()/2
         leftEdge = lander01.getAnchor().getX() - lander01.getWidth()/2 
         rightEdge = lander01.getAnchor().getX() + lander01.getWidth()/2
-        if bottomEdge >= WIN_HEIGHT - 10 and lateralSpeed = 0 and fallingSpeed < 10:
+        if bottomEdge >= WIN_HEIGHT - 10 and lateralSpeed == 0 and fallingSpeed < 1 and lander01.getAnchor().getX() > (randomPad * PAD_WIDTH) and lander01.getAnchor().getX() < (randomPad * PAD_WIDTH + PAD_WIDTH):
             winner = 1
             break
-        elif bottomEdge >= WIN_HEIGHT - 10 or topEdge <= 0 or leftEdge <= 0 or rightEdge >= WIN_WIDTH :
+        if bottomEdge >= WIN_HEIGHT - 10 or topEdge <= 0 or leftEdge <= 0 or rightEdge >= WIN_WIDTH :
             loser = 1
             break        
         key = win.checkKey()        
@@ -131,12 +111,11 @@ while playAgain == 1:
         lander01.move(lateralSpeed, fallingSpeed) 
         update(UPDATE_RATE)
 
-
-
     target01.undraw()
     xBoom = lander01.getAnchor().getX()
     yBoom = lander01.getAnchor().getY()
     if loser == 1:
+        lander01.undraw()
         lander01 = Image(Point(xBoom ,yBoom), "boom.gif")
         lander01.draw(win)
         popup1 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2), "YOU DIED, GAME OVER")
@@ -144,12 +123,13 @@ while playAgain == 1:
         popup2 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2+100), "Press y to play again or n to quit")
         popup2.draw(win)
         update(UPDATE_RATE)
-    elif winner == 1:
+    if winner == 1:
         popup1 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2), "YOU WIN!, GAME OVER")
         popup1.draw(win)
         popup2 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2+100), "Press y to play again or n to quit")
         popup2.draw(win)
         update(UPDATE_RATE)
+
     while True:
         key = win.checkKey()
         if key == "y":
