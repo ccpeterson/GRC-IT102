@@ -5,23 +5,27 @@
 from graphics import *
 import random
 
-WIN_WIDTH = 800 #Pixels
-WIN_HEIGHT = 800 #Pixels
-UPDATE_RATE = 60 #frames per second
-PAD_WIDTH = 100
-GRAVITY = 0.01 
-THRUST = 1
-STARTING_FUEL = 50 
+#constants for game setup
+WIN_WIDTH = 800 #window width in pixels
+WIN_HEIGHT = 800 #window height in pixels
+UPDATE_RATE = 60 #Frames per second
+PAD_WIDTH = 100 #width of each individual landing pad
+GRAVITY = 0.01 #increase to downward velocity each frame 
+THRUST = 1 #increase to upward or lateral velocity with each thrust
+STARTING_FUEL = 50  #ammount of thrusts allowed per round
 
+#function to reset the lander position after a round
 def landerReset():
     global lander01
     lander01.undraw()
     lander01 = Image(Point(WIN_WIDTH/2 ,WIN_HEIGHT/2), "lander.gif")
     lander01.draw(win)
 
+#setup the window
 win = GraphWin("Lander", WIN_WIDTH, WIN_HEIGHT, autoflush=False)
 win.setBackground("white")
 
+#display instructions and wait for a space bar to start the game
 instructions1 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2-100), "Welcome to Lander. Your mission is to land on the color indicated in the top right corner.")
 instructions1.draw(win)
 instructions2 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2), "Left and right arrows control your lateral movement. Space bar fires your main thruster which slows your decent")
@@ -35,16 +39,16 @@ while True:
             instructions2.undraw()
             instructions3.undraw()
             break
-
+#draw the initial lander at the starting position
 lander01 = Image(Point(WIN_WIDTH/2 ,WIN_HEIGHT/2), "lander.gif")
 lander01.draw(win)
+#setup of velocity and fuel varibales for initial display
 fuel = STARTING_FUEL
-#Initial rate of decent
 fallingSpeed = 0
-#Initial rate of lateral movement
 lateralSpeed = 0
+#setup of varibale used for displaying decent rate
 verticalDisplay =  str(round(10*fallingSpeed,2))
-
+#setup of display
 message1 = Text(Point(50,100), verticalDisplay)
 message1.draw(win)
 message2 = Text(Point(150,100), "Rate of decent")
@@ -57,15 +61,16 @@ message5 = Text(Point(50,160), fuel)
 message5.draw(win)
 message6 = Text(Point(150,160), "    fuel remaining")
 message6.draw(win)
-
+#main loop of game mechanic
 playAgain = 1
 while playAgain == 1:
+    #reset variables each round
     fuel = STARTING_FUEL
     winner = 0
     loser = 0
     fallingSpeed = 0
     lateralSpeed = 0
-    
+    #create the landing pads and pick one randomly to be the target each round
     landingPadList = []
     randomPad = random.randint(0, (WIN_WIDTH//PAD_WIDTH))
     for i in range(WIN_WIDTH//PAD_WIDTH):
@@ -77,26 +82,31 @@ while playAgain == 1:
         landingPadList[i].draw(win)
         if i == randomPad:
             targetColor = randomColor
-
+    #display a rectangle in the top right that will be the same colo as the target
     target01 = Rectangle(Point((WIN_WIDTH - 100),0), Point(WIN_WIDTH,100))
     target01.setFill(targetColor)
     target01.draw(win)
-
+    #starting the loop that runs each frame
     while True:    
+        #update all the displays
         verticalDisplay =  str(round(10*fallingSpeed,2))
         message1.setText(verticalDisplay)
         message3.setText(lateralSpeed)
         message5.setText(fuel)
+        #set varibales that are equal to the current position of the landers edges
         topEdge = lander01.getAnchor().getY() - lander01.getHeight()/2 
         bottomEdge = lander01.getAnchor().getY() + lander01.getHeight()/2
         leftEdge = lander01.getAnchor().getX() - lander01.getWidth()/2 
         rightEdge = lander01.getAnchor().getX() + lander01.getWidth()/2
+        #if the bottom edge touches the landing pad AND the center of the lander is above the correct target pad AND the rate of decent is slow enough AND it's not moving sideways then the win condition is met 
         if bottomEdge >= WIN_HEIGHT - 10 and lateralSpeed == 0 and fallingSpeed < 1 and lander01.getAnchor().getX() > (randomPad * PAD_WIDTH) and lander01.getAnchor().getX() < (randomPad * PAD_WIDTH + PAD_WIDTH):
             winner = 1
             break
+        #if the and edge of the lander touches the edges then the lose condition is met
         if bottomEdge >= WIN_HEIGHT - 10 or topEdge <= 0 or leftEdge <= 0 or rightEdge >= WIN_WIDTH :
             loser = 1
             break        
+        #checking for keyboard input each frame and applying thrust appropriately
         key = win.checkKey()        
         if key == "space" and fuel != 0:
             fallingSpeed = fallingSpeed - THRUST
@@ -107,32 +117,37 @@ while playAgain == 1:
         if key == "Right" and fuel != 0:
             lateralSpeed = lateralSpeed + THRUST
             fuel -= 1
-        fallingSpeed = fallingSpeed + GRAVITY          
+        #adding gravity to the current falling speed
+        fallingSpeed = fallingSpeed + GRAVITY
+        #moving the lander for every frame the current speed
         lander01.move(lateralSpeed, fallingSpeed) 
         update(UPDATE_RATE)
 
+    #remove the target rectangle
     target01.undraw()
-    xBoom = lander01.getAnchor().getX()
-    yBoom = lander01.getAnchor().getY()
     if loser == 1:
+        #remove the lander image and replace it with an explosion image
         lander01.undraw()
-        lander01 = Image(Point(xBoom ,yBoom), "boom.gif")
+        lander01 = Image(Point(lander01.getAnchor().getX() ,lander01.getAnchor().getY()), "boom.gif")
         lander01.draw(win)
+        #display the results
         popup1 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2), "YOU DIED, GAME OVER")
         popup1.draw(win)
         popup2 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2+100), "Press y to play again or n to quit")
         popup2.draw(win)
         update(UPDATE_RATE)
     if winner == 1:
-        popup1 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2), "YOU WIN!, GAME OVER")
+        #display the results
+        popup1 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2), "YOU WIN!")
         popup1.draw(win)
         popup2 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2+100), "Press y to play again or n to quit")
         popup2.draw(win)
         update(UPDATE_RATE)
-
+    #wait for a y or n
     while True:
         key = win.checkKey()
         if key == "y":
+            #undraw the popup display, the landing pads, and call 
             popup1.undraw()
             popup2.undraw()
             for i in range(WIN_WIDTH//100):
