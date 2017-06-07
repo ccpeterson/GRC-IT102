@@ -12,7 +12,7 @@ UPDATE_RATE = 60 #Frames per second
 PAD_WIDTH = 100 #width of each individual landing pad
 GRAVITY = 0.01 #increase to downward velocity each frame 
 THRUST = 1 #increase to upward or lateral velocity with each thrust
-STARTING_FUEL = 50  #ammount of thrusts allowed per round
+STARTING_FUEL = 30  #ammount of thrusts allowed per round
 
 #function to reset the lander position after a round
 def landerReset():
@@ -28,16 +28,22 @@ win.setBackground("white")
 #display instructions and wait for a space bar to start the game
 instructions1 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2-100), "Welcome to Lander. Your mission is to land on the color indicated in the top right corner.")
 instructions1.draw(win)
-instructions2 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2), "Left and right arrows control your lateral movement. Space bar fires your main thruster which slows your decent")
+instructions2 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2-50), "Left and right arrows control your lateral movement. Space bar fires your main thruster which slows your decent")
 instructions2.draw(win)
-instructions3 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2+100), "You must land with no lateral movement and a rate of decent less then 10")
+instructions3 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2), "You must land with no lateral movement and a rate of decent less then 10")
 instructions3.draw(win)
+instructions4 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2+50), "You will also crash if you hit the sides or top of the screen.")
+instructions4.draw(win)
+instructions5 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2+100), "Press the space bar to start the game.")
+instructions5.draw(win)
 while True:
         key = win.checkKey()
         if key == "space":
             instructions1.undraw()
             instructions2.undraw()
             instructions3.undraw()
+            instructions4.undraw()
+            instructions5.undraw()
             break
 #draw the initial lander at the starting position
 lander01 = Image(Point(WIN_WIDTH/2 ,WIN_HEIGHT/2), "lander.gif")
@@ -82,7 +88,7 @@ while playAgain == 1:
         landingPadList[i].draw(win)
         if i == randomPad:
             targetColor = randomColor
-    #display a rectangle in the top right that will be the same colo as the target
+    #display a rectangle in the top right that will be the same color as the target
     target01 = Rectangle(Point((WIN_WIDTH - 100),0), Point(WIN_WIDTH,100))
     target01.setFill(targetColor)
     target01.draw(win)
@@ -93,7 +99,7 @@ while playAgain == 1:
         message1.setText(verticalDisplay)
         message3.setText(lateralSpeed)
         message5.setText(fuel)
-        #set varibales that are equal to the current position of the landers edges
+        #set variables that are equal to the current position of the landers edges
         topEdge = lander01.getAnchor().getY() - lander01.getHeight()/2 
         bottomEdge = lander01.getAnchor().getY() + lander01.getHeight()/2
         leftEdge = lander01.getAnchor().getX() - lander01.getWidth()/2 
@@ -131,7 +137,7 @@ while playAgain == 1:
         lander01 = Image(Point(lander01.getAnchor().getX() ,lander01.getAnchor().getY()), "boom.gif")
         lander01.draw(win)
         #display the results
-        popup1 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2), "YOU DIED, GAME OVER")
+        popup1 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2), "YOU DIED IN THE COLD VACCUM OF SPACE, GAME OVER")
         popup1.draw(win)
         popup2 = Text(Point(WIN_WIDTH//2,WIN_HEIGHT//2+100), "Press y to play again or n to quit")
         popup2.draw(win)
